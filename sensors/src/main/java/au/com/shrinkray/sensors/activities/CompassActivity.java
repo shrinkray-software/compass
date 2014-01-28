@@ -9,6 +9,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,6 +22,8 @@ import au.com.shrinkray.sensors.views.CompassView;
 
 public class CompassActivity extends Activity implements SensorEventListener {
 
+    private static final String TAG = "CompassActivity";
+
     private SensorManager mSensorManager;
 
     private Sensor mStepCounterSensor;
@@ -28,9 +31,6 @@ public class CompassActivity extends Activity implements SensorEventListener {
     private Sensor mAccelerometerSensor;
     private Sensor mMagneticFieldSensor;
 
-    // 33.8600° S, 151.2111° E
-    private GeomagneticField mGeomagneticField =
-            new GeomagneticField(33.86f,151.2111f,0,System.currentTimeMillis());
 
     private int mInitialStepCount = -1;
     private int mStepCount = 0;
@@ -200,7 +200,7 @@ public class CompassActivity extends Activity implements SensorEventListener {
 
             if ( success ) {
                 // Update the orientation values.
-                mOrientation = SensorManager.getOrientation(mRemappedRotationMatrix,mOrientation);
+                mOrientation = SensorManager.getOrientation(mRotationMatrix,mOrientation);
 
                 mAzimuth = mOrientation[0];
                 mPitch = mOrientation[1];
@@ -224,6 +224,10 @@ public class CompassActivity extends Activity implements SensorEventListener {
      * A placeholder fragment containing a simple view.
      */
     public static class CompassFragment extends Fragment {
+
+        // 33.8600° S, 151.2111° E
+        private GeomagneticField mGeomagneticField =
+                new GeomagneticField(33.86f,151.2111f,0,System.currentTimeMillis());
 
         private TextView mAzimuthTextView;
         private TextView mPitchTextView;
@@ -250,6 +254,7 @@ public class CompassActivity extends Activity implements SensorEventListener {
             mRollTextView = (TextView) rootView.findViewById(R.id.txtRoll);
 
             mCompassView = (CompassView)rootView.findViewById(R.id.compass);
+            mCompassView.setDeclination(mGeomagneticField.getDeclination());
 
             mStepCountTextView = (TextView) rootView.findViewById(R.id.txtStepCount);
 
@@ -275,6 +280,7 @@ public class CompassActivity extends Activity implements SensorEventListener {
             }
 
         }
+
     }
 
 }

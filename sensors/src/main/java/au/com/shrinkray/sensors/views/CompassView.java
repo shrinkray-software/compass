@@ -7,8 +7,6 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.hardware.GeomagneticField;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -64,7 +62,7 @@ public class CompassView extends View {
         }
 
         // Declination is variance from true North of magnetic North,
-        canvas.rotate( - mAzimuth + mDeclination + 90 );
+        canvas.rotate( - mAzimuth + mDeclination );
 
         canvas.drawBitmap(mBackgroundBitmap,mBackgroundBitmapSrcRect,
                 mBackgroundBitmapDestRect,mBackgroundBitmapPaint);
@@ -88,6 +86,7 @@ public class CompassView extends View {
 
     public void setDeclination(float declination) {
         mDeclination = declination;
+        postInvalidate();
     }
 
 
