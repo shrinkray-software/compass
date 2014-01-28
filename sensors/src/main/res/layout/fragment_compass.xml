@@ -1,0 +1,98 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="au.com.shrinkray.sensors.activities.CompassActivity.TreasureMapFragment">
+
+
+    <au.com.shrinkray.sensors.views.CompassView
+        android:id="@+id/compass"
+        android:layout_width="240dp"
+        android:layout_height="240dp"
+        android:layout_margin="8dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        />
+
+    <TableLayout
+        android:id="@+id/layoutOrientation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/compass">
+        <TableRow>
+            <TextView
+                android:id="@+id/txtAzimuthLabel"
+                android:text="Azimuth"
+                android:layout_gravity="right"
+                android:layout_marginRight="8dp"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                />
+            <TextView
+                android:id="@+id/txtAzimuth"
+                android:text="120\u00b0"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:id="@+id/txtPitchLabel"
+                android:text="Pitch"
+                android:layout_gravity="right"
+                android:layout_marginRight="8dp"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/txtPitch"
+                android:text="120\u00b0"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"/>
+
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:id="@+id/txtRollLabel"
+                android:text="Roll"
+                android:layout_gravity="right"
+                android:layout_marginRight="8dp"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/txtRoll"
+                android:text="120\u00b0"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"/>
+        </TableRow>
+
+    </TableLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/layoutOrientation"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:layout_margin="16dp">
+        <TextView
+            android:id="@+id/txtStepCount"
+            android:text="120"
+            android:textSize="64sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/txtStepCountLabel"
+            android:text="PACES"
+            android:textSize="24dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+
+</RelativeLayout>
